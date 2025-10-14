@@ -5,6 +5,10 @@ from data import Url, ResponseMessages
 from generators import generate_user_data, generate_incomplete_user_data
 
 
+@allure.epic("Пользователи")
+@allure.feature("Создание пользователя")
+class TestUserCreation:
+
     @allure.title("Успешное создание уникального пользователя")
     def test_create_unique_user(self, create_user):
         """

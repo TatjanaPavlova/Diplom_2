@@ -1,4 +1,5 @@
 from faker import Faker
+import random
 
 fake = Faker()
 
@@ -6,7 +7,7 @@ fake = Faker()
 # Создаёт валидные данные для регистрации нового пользователя
 def generate_user_data():
     return {
-        "email": fake.email(),
+        "email": f"{fake.first_name().lower()}{random.randint(1000,9999)}@example.com",
         "password": fake.password(length=10),
         "name": fake.first_name()
     }

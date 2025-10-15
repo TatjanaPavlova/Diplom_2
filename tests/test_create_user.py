@@ -10,9 +10,12 @@ from generators import generate_user_data, generate_incomplete_user_data
 class TestUserCreation:
 
     @allure.title("Успешное создание уникального пользователя")
-    def test_create_unique_user(self):
-        user_data = generate_user_data()
-        response = requests.post(f"{Url.BASE_URL}{Url.USER_CREATE}", json=user_data)
+    def test_create_unique_user(self, create_user):
+        user_data = create_user["user_data"]
+        response = requests.post(f"{Url.BASE_URL}{Url.USER_LOGIN}", json={
+            "email": user_data["email"],
+            "password": user_data["password"]
+        })
 
         assert response.status_code == 200
         body = response.json()

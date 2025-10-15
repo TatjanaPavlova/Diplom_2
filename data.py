@@ -20,3 +20,10 @@ class ResponseMessages:
     USER_UNAUTHORIZED = 'You should be authorised'
     ORDER_NO_INGREDIENTS = 'Ingredient ids must be provided'
     
+
+class TestUsers:
+    INVALID_LOGIN = "wrong@example.com"
+    INVALID_PASSWORD = "wrongpassword123"
+    # Можно добавить существующего пользователя для тестов
+    EXISTING_USER_EMAIL = "existing@example.com"
+    EXISTING_USER_PASSWORD = "correctpass"

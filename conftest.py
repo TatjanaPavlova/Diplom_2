@@ -22,4 +22,4 @@ def create_user():
     # Удаляем пользователя после теста (если токен получен)
     if access_token:
         headers = {"Authorization": access_token}
-        requests.delete(f"{Url.BASE_URL}/api/auth/user", headers=headers)
+        requests.delete(f"{Url.BASE_URL}{Url.USER_DELETE}", headers=headers)

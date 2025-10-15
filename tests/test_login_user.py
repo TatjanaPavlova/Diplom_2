@@ -10,17 +10,10 @@ class TestUserLogin:
 
     @allure.title("Успешная авторизация существующего пользователя")
     def test_login_existing_user(self, create_user):
-        """
-        Проверяет, что пользователь может успешно войти под своими данными.
-        """
         user = create_user["user_data"]
+        response = requests.post(f"{Url.BASE_URL}{Url.USER_LOGIN}", json=user)
 
-        response = requests.post(f"{Url.BASE_URL}{Url.USER_LOGIN}", json={
-            "email": user["email"],
-            "password": user["password"]
-        })
-
-        assert response.status_code == 200, f"Неверный статус-код: {response.status_code}"
+        assert response.status_code == 200
         body = response.json()
         assert body["success"] is True
         assert "accessToken" in body
@@ -28,15 +21,11 @@ class TestUserLogin:
 
     @allure.title("Ошибка при авторизации с неверным логином или паролем")
     def test_login_with_invalid_credentials(self):
-        """
-        Проверяет, что при неверных данных возвращается 401 Unauthorized.
-        """
         invalid_user = generate_user_data()
         invalid_user["password"] = "wrongpassword123"
-
         response = requests.post(f"{Url.BASE_URL}{Url.USER_LOGIN}", json=invalid_user)
 
         assert response.status_code == 401
         body = response.json()
         assert body["success"] is False
-        assert body["message"] == ResponseMessages.USER_LOGIN_NOT_ENOUGH_DATA
+        assert body["message"] == ResponseMessages.USER_LOGIN_INVALID_CREDENTIALS

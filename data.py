@@ -1,14 +1,13 @@
 
-
 class Url:
     BASE_URL = 'https://stellarburgers.education-services.ru' # главная страница Stellar Burgers
 
-    # пользователи
+class UserEndpoints:
     USER_CREATE = '/api/auth/register' # создание пользователя
     USER_LOGIN = '/api/auth/login' # логин пользователя
     USER_DELETE = '/api/auth/user' # удаление пользователя
 
-    # заказы
+class OrderEndpoints:
     ORDER_CREATE = '/api/orders' # создание заказа
     INGREDIENTS = '/api/ingredients' # получение данных об ингредиентах
 
